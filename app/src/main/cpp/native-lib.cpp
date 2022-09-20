@@ -42,10 +42,7 @@ Java_com_example_ccvalidator_MainActivity_CCValidator( JNIEnv* env,
     int32_t dbl;
     int32_t i;
 
-    // Step 1 is to double every second digit, starting from the right. If it
-    // results in a two digit number, add both the digits to obtain a single
-    // digit number. Finally, sum all the answers to obtain 'doubleEvenSum'.
-
+   
     for (i = len - 2; i >= 0; i = i - 2) {
         dbl = ((ccNumber[i] - 48) * 2);
         if (dbl > 9) {
@@ -54,15 +51,10 @@ Java_com_example_ccvalidator_MainActivity_CCValidator( JNIEnv* env,
         doubleEvenSum += dbl;
     }
 
-    // Step 2 is to add every odd placed digit from the right to the value
-    // 'doubleEvenSum'.
 
     for (i = len - 1; i >= 0; i = i - 2) {
         doubleEvenSum += (ccNumber[i] - 48);
     }
-
-    // Step 3 is to check if the final 'doubleEvenSum' is a multiple of 10.
-    // If yes, it is a valid CC number. Otherwise, not.
 
     finalResult=doubleEvenSum % 10 == 0 ? "Valid !" : "Invalid !";
 
